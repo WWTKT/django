@@ -1,10 +1,18 @@
-<h1>Post Archives for {{ day|date:"N d, Y" }}</h1>
+{% extends "base.html" %}
 
-<div>
-    <ul>
-        {% for post in object_list %}
-            <li>{{ post.modify_date|date:"Y-m-d" }}&nbsp;&nbsp;&nbsp;
-            <a href="{{ post.get_absolute_url }}"><strong>{{ post.title }}</strong></a> </li>
-        {% endfor %}
-    </ul>
+{% block title %}Django Bookmark List{% endblock %}
+
+{% block content %}
+<div id="content">
+    <h1>Post Archives for {{ day|date:"N d, Y" }}</h1>
+
+    <div>
+        <ul>
+            {% for post in object_list %}
+                <li>{{ post.modify_date|date:"Y-m-d" }}&nbsp;&nbsp;&nbsp;
+                <a href="{{ post.get_absolute_url }}"><strong>{{ post.title }}</strong></a> </li>
+            {% endfor %}
+        </ul>
+    </div>
 </div>
+{% endblock %}

@@ -1,20 +1,28 @@
-<h1>Blog List</h1>
-{% for post in posts %}
-    <h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
-    {{  post.modify_date|date:"N d, Y" }}
-    <p>{{ post.description }}</p>
-{% endfor %}
+{% extends "base.html" %}
 
-<div>
-    <span>
-        {% if page_obj.has_previous %}
-            <a href="?page={{ page_obj.previous_page_number }}">PreviousPage</a>
-        {% endif %}
+{% block title %}post_all.html{% endblock %}
 
-        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+{% block content %}
+<div id="content">
+    <h1>Blog List</h1>
+    {% for post in posts %}
+        <h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
+        {{  post.modify_date|date:"N d, Y" }}
+        <p>{{ post.description }}</p>
+    {% endfor %}
 
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">NextPage</a>
-        {% endif %}
-    </span>
+    <div>
+        <span>
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}">PreviousPage</a>
+            {% endif %}
+
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">NextPage</a>
+            {% endif %}
+        </span>
+    </div>
 </div>
+{% endblock %}

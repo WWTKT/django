@@ -3,6 +3,7 @@ from django.utils.encoding import python_2_unicode_compatible
 
 from django.db import models
 from django.core.urlresolvers import reverse
+from tagging.fields import TagField
 
 # Create your models here.
 
@@ -14,6 +15,7 @@ class Post(models.Model):
     content = models.TextField('내용')
     create_date = models.DateTimeField('생성일시', auto_now_add=True)
     modify_date = models.DateTimeField('수정일시', auto_now=True)
+    tag = TagField()
 
     class Meta:
         verbose_name = 'post'
